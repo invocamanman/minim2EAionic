@@ -1,0 +1,74 @@
+
+<ion-header >
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>EXAMEN MINIM 2 </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<button ion-button (click)="Buscaralfabetico(buscadoruser.value)">busqueda alfabetico</button>
+<button ion-button (click)="Buscarnombre(buscadoruser.value)">busca por nombre</button>
+<button ion-button (click)="Buscarsurname(buscadoruser.value)">busca por apellido</button>
+<button ion-button (click)="Buscarrol(buscadoruser.value)">busca por rol</button>
+<button ion-button (click)="Buscastate(buscadoruser.value)">busca por estado, debe poner true o false </button>
+<ion-content padding>
+
+  <div>
+    <h2>Escoja una opción de filtrado para empezar</h2>
+    <input #buscadoruser  type="text" id="buscador" class="form-control" placeholder="buscar" required="" autofocus="">
+    <button ion-button (click)="Filtrar(buscadoruser.value)">Filtrar</button>
+    <ion-item>
+      <ion-label>Opciones de filtrado</ion-label>
+      <ion-select [(ngModel)]="options123">
+        <ion-option value=1>Alfabetico</ion-option>
+        <ion-option value=2>Nombre</ion-option>
+        <ion-option value=3>Apellido</ion-option>
+        <ion-option value=4>Rol</ion-option>
+        <ion-option value=5>Estado</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <div>
+    <ul>
+      <li *ngFor="let user of userlist">
+        <p>Name: {{user.name}}</p>
+        <p>Surname: {{user.surname}}</p>
+        <p>Active: {{user.state}}</p>
+        <p>Role: {{user.role}}</p>
+        <a #Iduser (click)="PutIDintosearch(user._id)">Id: {{user._id}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h2>Search and modify a user, only will modify the fields that you complete, then press modify</h2>
+    <input #buscador type="text" id="buscador1" class="form-control" value={{buscadoridvalue}} placeholder="introduce la id del usuario" required="" autofocus="">
+    <button ion-button (click)="Buscarporid(buscador.value)">busqueda por id</button>
+    <p>Name: {{userdetalle.name}}</p>
+    <input #nameM type="text" id="MUsername" class="form-control"  placeholder="modify username" required="" autofocus="">
+    <p>Surname: {{userdetalle.surname}}</p>
+    <input #surnameM type="password" id="Mpassword" class="form-control"  placeholder="modify password" required="" autofocus="">
+    <p>Rol: {{userdetalle.role}}</p>
+    <input #rolM type="text" id="Msurname" class="form-control"  placeholder="modify rol" required="" autofocus="">
+    <button ion-button (click)="Modificar(nameM.value, surnameM.value,rolM.value)">modify</button>
+
+  </div>
+
+  <div>
+    <h3>Bloquea a un usuario con su id</h3>
+    <input #buscadord type="text" id="buscador1d" class="form-control" value={{buscadoridvalue}} placeholder="introduce la id del usuario" required="" autofocus="">
+    <button ion-button (click)="Bloquearporid(buscadord.value)">Bloquear</button>
+
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
